@@ -1,0 +1,77 @@
+from ctypes.wintypes import FLOAT
+import datetime
+from pickletools import long1
+from re import S
+x = datetime.datetime.now()
+r = int()
+r = int(input("presiona 1 para registrarte  "))
+
+if (r==1):
+    print("COMPLETA LA SIGUIENTE INFORMACION PARA REGISTRARTE   ")
+    nombre = (input("escribe tu nombre  "))
+    nacimiento =(input("escribe tu fecha de nacimiento  "))
+    rut = (input("escribe tu RUT"))
+    celular = int(input("escribe tu numero de celular   "))
+    print("registro exitoso!!")
+    
+    
+i = int(input("¿desea iniciar una carrera? (presiona 2 para aceptar)    (presiona 3 para rechazar)"))
+
+while (i > 3 or i < 2):
+        i= int(input("Has Usado un Numero Erroneo Ingrese Otra vez:  "))
+
+if (i==3):
+    print("usted rechazo el servicio, saliendo....")
+    quit()
+
+
+if (i==2):
+    print("usted iniciara una carrera pronto...")
+    print("la hora de inicio es:    ")
+    print(x)
+    print("ingresa tu ubicacion")
+    Latitud =input("Ingrese Latitud del destino de la carrera del vehiculo: (Norte,Sur,Este,Oeste): ")
+    Longitud =float(input("Distancia de Recorrido de la carrera: "))  
+    print("ADVERTENCIA!! se te cobrara 100$ por cada 10 km recorridos")
+    
+    Pago = 100
+
+c = int(input("Quieres Encender el Vehiculo (1.Si 2.No): "))
+Velocidad = 0
+Distancia = 0
+while (c==1):
+    print("Vas Viajando hacia: ",Latitud,"\n hacia un recorrido de: ",Longitud)
+    print ("tu auto en 0 KM/h: ")
+    acelerar= int(input("Deseas Accelerar (1.Si 2.No): "))
+    while (acelerar==1):
+        if(Longitud>1):
+            acelerar=1
+            Velocidad = Velocidad + 10
+            Longitud = Longitud - 10
+            Distancia = Distancia + 10
+
+            print("Te encuentra a la Velocidad de: ",Velocidad, "km/h")
+            print("te queda una longitud por recorrer de ", Longitud,)
+            acelerar= int(input("Desear seguir Acelerando (1.Si 2.No) "))    
+
+    
+            girar = int(input("Deseas Girar? (1.Si 2.No)"))
+    
+            if (girar==1):
+                direccion=(input("(Viras 1.Oeste o 2.Este): "))
+                print("estabas hacia: ",Latitud,"ahora cambiaste de direccion ")
+                print("con una velocidad de 5 km/h ")
+                Longitud = Longitud - 5
+                Velocidad = Velocidad + 5
+                girar = 2
+            
+        
+
+        else: 
+            
+            print("su carrera termino")
+            Pago = Pago * Velocidad
+            print("usted llego a la hora:   ",x)
+            print("usted recorrio una distancia de: ", Distancia, "km")
+            print("usted debe pagar un total de:   ",Pago)
+            quit()
